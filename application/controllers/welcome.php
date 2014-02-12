@@ -2,6 +2,26 @@
 
 class Welcome extends CI_Controller {
 
+	function __construct(){
+
+		parent::__construct();
+
+		//model
+		$this->load->model('cms_model', 'm_cms');
+
+		//helper
+		$this->load->helper('url');
+	}
+
+	//for testing anything
+	function test(){
+
+		$query = $this->m_cms->get_carousel();
+
+		print_r($query);
+		print_r($query->result());
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -17,10 +37,13 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('index');
+	public function index(){
+
+		$data['carousel'] = $this->m_cms->get_carousel();
+
+		$this->load->view('index', $data);
 	}
+
 }
 
 /* End of file welcome.php */

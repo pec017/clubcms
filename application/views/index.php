@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CMS</title>
+    <title>Home Page</title>
     <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?=base_url('css/bootstrap.css')?>">
     <style type="text/css">
         /* GLOBAL STYLES
         -------------------------------------------------- */
@@ -195,32 +195,26 @@
         </div>
     </div>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <?php $result = $carousel->result(); ?>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
+        	<?php foreach ($result as $key => $row): ?>
+        	<li data-target="#myCarousel" data-slide-to="<?=$key?>" class="<?=0==$key?'active':''?>"></li>
+        	<?php endforeach; ?>
         </ol>
         <div class="carousel-inner">
-            <div class="item active">
-                <img src="img/slide1.jpg" alt="slide1">
+        	<?php foreach ($result as $key => $row): ?>
+            <div class="item <?=0==$key?'active':''?>">
+                <img src="<?=base_url("img/$row->img_src")?>" alt="<?=$row->img_alt?>">
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Example headline.</h1>
-                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        <h1><?=$row->content_h?></h1>
+                        <p><?=$row->content_p?></p>
+                        <p><a class="btn btn-lg btn-primary" href="<?=$row->btn_href?>" role="button"><?=$row->content_btn?></a></p>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <img src="img/slide2.jpg" alt="slide2">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
 
         <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -315,7 +309,7 @@
         </footer>
     </div>
 
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="<?=base_url('js/jquery-1.10.2.js')?>"></script>
+    <script src="<?=base_url('js/bootstrap.js')?>"></script>
 </body>
 </html>
