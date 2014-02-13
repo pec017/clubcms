@@ -221,29 +221,14 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
 
+    <?php $result = $category->result(); ?>
     <div class="container marketing">
         <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-info">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">News <a class="pull-right" href="#">More ></a></div>
-                    <div class="panel-body">
-                        <p>Main News</p>
-                    </div>
-                    <!-- List group -->
-                    <ul class="list-group">
-                        <li class="list-group-item">news2</li>
-                        <li class="list-group-item">news3</li>
-                        <li class="list-group-item">news4</li>
-                        <li class="list-group-item">news5</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-md-offset-1">
+            <?php foreach($result as $key => $row): ?>
+            <div class="col-md-3 <?=0!=$key?'col-md-offset-1':''?>">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">News <a class="pull-right" href="#">More ></a></div>
+                    <div class="panel-heading"><?=$row->name?> <a class="pull-right" href="<?=$row->href?>">More ></a></div>
                     <div class="panel-body">
                         <p>Main News</p>
                     </div>
@@ -256,23 +241,7 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="col-md-3 col-md-offset-1">
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading">News <a class="pull-right" href="#">More ></a></div>
-                    <div class="panel-body">
-                        <p>Main News</p>
-                    </div>
-                    <!-- List group -->
-                    <ul class="list-group">
-                        <li class="list-group-item">news2</li>
-                        <li class="list-group-item">news3</li>
-                        <li class="list-group-item">news4</li>
-                        <li class="list-group-item">news5</li>
-                    </ul>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     
         <hr class="featurette-divider">

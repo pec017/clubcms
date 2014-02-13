@@ -16,7 +16,7 @@ class Welcome extends CI_Controller {
 	//for testing anything
 	function test(){
 
-		$query = $this->m_cms->get_carousel();
+		$query = $this->m_cms->get_category();
 
 		print_r($query);
 		print_r($query->result());
@@ -39,7 +39,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index(){
 
-		$data['carousel'] = $this->m_cms->get_carousel();
+		$data['carousel'] = $this->m_cms->get_carousel(array('display' => 1));
+		$data['category'] = $this->m_cms->get_category(array('display' => 1));
+
 
 		$this->load->view('index', $data);
 	}
