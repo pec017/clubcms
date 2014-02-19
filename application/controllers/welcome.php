@@ -16,10 +16,18 @@ class Welcome extends CI_Controller {
 	//for testing anything
 	function test(){
 
-		$query = $this->m_cms->get_category();
+		$query = $this->m_cms->get_article(array('category_id' => 1));
 
-		print_r($query);
-		print_r($query->result());
+		//print_r($query);
+		//print_r($query->result());
+
+		$data['category'] = $this->m_cms->get_category(array('display' => 1));
+		print_r($data['category']->result());
+
+		foreach ($data['category']->result() as $key => $value) {
+			$data['article'][$key] = $this->m_cms->get_article(array('category_id' => (int)$value->id));	
+		}
+		print_r($data['article']);
 	}
 
 	/**
@@ -42,6 +50,10 @@ class Welcome extends CI_Controller {
 		$data['carousel'] = $this->m_cms->get_carousel(array('display' => 1));
 		$data['category'] = $this->m_cms->get_category(array('display' => 1));
 
+		//articles display on the index
+		foreach ($data['category']->result() as $key => $value) {
+			$data['article'][$key] = $this->m_cms->get_article(array('category_id' => (int)$value->id));	
+		}
 
 		$this->load->view('index', $data);
 	}

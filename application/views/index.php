@@ -225,6 +225,7 @@
     <div class="container marketing">
         <div class="row">
             <?php foreach($result as $key => $row): ?>
+            <?php $res_article = $article[$key]->result(); ?>
             <div class="col-md-3 <?=0!=$key?'col-md-offset-1':''?>">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
