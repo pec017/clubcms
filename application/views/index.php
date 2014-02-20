@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>百度俱乐部</title>
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="<?=base_url('css/bootstrap.css')?>">
     <style type="text/css">
@@ -14,6 +14,7 @@
         body {
           padding-bottom: 40px;
           color: #5a5a5a;
+          background-color: #CCCCCC;
         }
 
 
@@ -23,7 +24,7 @@
 
         /* Special class on .container surrounding .navbar, used for positioning it into place. */
         .navbar-wrapper {
-          position: absolute;
+          position: relative;
           top: 0;
           left: 0;
           right: 0;
@@ -122,7 +123,7 @@
           /* Navbar positioning foo */
           .navbar-wrapper {
             margin-top: 20px;
-          }
+          } 
           .navbar-wrapper .container {
             padding-left:  15px;
             padding-right: 15px;

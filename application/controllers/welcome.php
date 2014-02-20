@@ -18,16 +18,10 @@ class Welcome extends CI_Controller {
 
 		$query = $this->m_cms->get_article(array('category_id' => 1));
 
-		//print_r($query);
-		//print_r($query->result());
+		print_r($query);
+		print_r($query->result());
 
-		$data['category'] = $this->m_cms->get_category(array('display' => 1));
-		print_r($data['category']->result());
 
-		foreach ($data['category']->result() as $key => $value) {
-			$data['article'][$key] = $this->m_cms->get_article(array('category_id' => (int)$value->id));	
-		}
-		print_r($data['article']);
 	}
 
 	/**
@@ -47,15 +41,31 @@ class Welcome extends CI_Controller {
 	 */
 	public function index(){
 
+		//the carousel
 		$data['carousel'] = $this->m_cms->get_carousel(array('display' => 1));
+
+		//category list
 		$data['category'] = $this->m_cms->get_category(array('display' => 1));
 
 		//articles display on the index
 		foreach ($data['category']->result() as $key => $value) {
-			$data['article'][$key] = $this->m_cms->get_article(array('category_id' => (int)$value->id));	
+			$data['article'][$key] = $this->m_cms->get_article(array('category_id' => (int)$value->id, 'limit' => 5));	
 		}
 
 		$this->load->view('index', $data);
+	}
+
+	public function category($category_id){
+
+		$category_id = (int)$category_id;
+
+		//category list
+		$data['category'] = $this->m_cms->get_category();
+
+		//article of the category list
+		$data['article'] = $this->m_cms->get_article(array('category_id' => $category_id));
+
+		$this->load->view('category', $data);
 	}
 
 }

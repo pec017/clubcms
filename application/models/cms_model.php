@@ -41,15 +41,20 @@ class Cms_model extends CI_Model {
 		$where = array();
 
 		//default number of articles : $limit
-		$limit = 5;
-		if(isset($condition['limit']))
+		if(isset($condition['limit'])){
 			$limit = (int)$condition['limit'];
+			$this->db->limit($limit);
+		}
+
+		//order id desc, get recent articles
+		$this->db->order_by('id', 'desc');
 
 		//category_id
 		if(isset($condition['category_id']))
 			$where['category_id'] = (int)$condition['category_id'];
 
-		$query = $this->db->get_where('tb_article', $where, $limit);
+
+		$query = $this->db->get_where('tb_article', $where);
 
 		return $query;
 	}
