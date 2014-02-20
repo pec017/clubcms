@@ -162,21 +162,24 @@
         <div class="container">
             <nav class="navbar navbar-inverse navbar-default" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="#">首页</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link1</a></li>
-                        <li><a href="#">Link2</a></li>
+                        <li class="active"><a href="#">俱乐部概况</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown1 <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">文章目录 <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action1</a></li>
-                                <li><a href="#">Action2</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Action3</a></li>
+                                <?php 
+                                    //category list
+                                    $result = $category->result();
+                                    foreach($result as $key => $row):
+                                ?>
+                                <li><a href="<?=$row->href?>"><?=$row->name?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </li>
+                        <li><a href="#">Link2</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Link3</a></li>
@@ -225,20 +228,19 @@
     <div class="container marketing">
         <div class="row">
             <?php foreach($result as $key => $row): ?>
-            <?php $res_article = $article[$key]->result(); ?>
+            <?php $res_art = $article[$key]->result(); ?>
             <div class="col-md-3 <?=0!=$key?'col-md-offset-1':''?>">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading"><?=$row->name?> <a class="pull-right" href="<?=$row->href?>">More ></a></div>
+                    <div class="panel-heading"><?=$row->name?> <a class="pull-right" href="<?=$row->href?>">More &gt;</a></div>
                     <div class="panel-body">
-                        <p>Main News</p>
+                        <p><?=isset($res_art[0])?mb_substr($res_art[0]->title, 0, 12):'无'?></p>
                     </div>
                     <!-- List group -->
                     <ul class="list-group">
-                        <li class="list-group-item">news2</li>
-                        <li class="list-group-item">news3</li>
-                        <li class="list-group-item">news4</li>
-                        <li class="list-group-item">news5</li>
+                        <?php for ($i=1; $i < 5; $i++): ?>
+                        <li class="list-group-item"><?=isset($res_art[$i])?mb_substr($res_art[$i]->title, 0, 12):'无'?></li>
+                        <?php endfor; ?>
                     </ul>
                 </div>
             </div>
