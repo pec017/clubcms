@@ -13,15 +13,28 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 	}
 
+
 	//for testing anything
 	function test(){
 
 		$query = $this->m_cms->get_article(array('category_id' => 1));
 
+		//print_r($query);
+		//print_r($query->result());
+
+		$query = $this->m_cms->get_article(array('id' => 6));
+
 		print_r($query);
 		print_r($query->result());
+	}
 
 
+	//load views from some pages
+	function load_view($page, $data = NULL){
+
+		$this->load->view('header', $data);
+		$this->load->view($page);
+		$this->load->view('footer');
 	}
 
 	/**
@@ -52,7 +65,7 @@ class Welcome extends CI_Controller {
 			$data['article'][$key] = $this->m_cms->get_article(array('category_id' => (int)$value->id, 'limit' => 5));	
 		}
 
-		$this->load->view('index', $data);
+		$this->load_view('index', $data);
 	}
 
 	public function category($category_id){
@@ -65,7 +78,21 @@ class Welcome extends CI_Controller {
 		//article of the category list
 		$data['article'] = $this->m_cms->get_article(array('category_id' => $category_id));
 
-		$this->load->view('category', $data);
+		$this->load_view('category', $data);
+	}
+
+	public function article($article_id){
+
+		$article_id = (int)$article_id;
+
+		//category list
+		$data['category'] = $this->m_cms->get_category();
+
+		//the article
+		$data['article'] = $this->m_cms->get_article(array('id' => $article_id));
+
+		$this->load_view('article', $data);
+
 	}
 
 }

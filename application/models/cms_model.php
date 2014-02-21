@@ -53,6 +53,10 @@ class Cms_model extends CI_Model {
 		if(isset($condition['category_id']))
 			$where['category_id'] = (int)$condition['category_id'];
 
+		//article_id
+		if(isset($condition['id']))
+			$where['id'] = (int)$condition['id'];
+
 
 		$query = $this->db->get_where('tb_article', $where);
 
