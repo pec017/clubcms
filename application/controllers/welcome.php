@@ -24,8 +24,8 @@ class Welcome extends CI_Controller {
 
 		$query = $this->m_cms->get_article(array('id' => 6));
 
-		print_r($query);
-		print_r($query->result());
+		//print_r($query);
+		//print_r($query->result());
 	}
 
 
