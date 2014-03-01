@@ -13,7 +13,7 @@
 			<h1>浙江大学百度俱乐部 <small>主站后台管理系统</small></h1>
 			<ul class="nav nav-pills">
 				<li class="active"><a href="#">在线</a></li>
-				<li><a href="#">注销</a></li>
+				<li><a href="do_logout">注销</a></li>
 			</ul>
 		</div>
 	</div>

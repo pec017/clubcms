@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2014-02-23 15:22:46
+-- 生成日期: 2014-03-01 22:41:00
 -- 服务器版本: 5.6.11
 -- PHP 版本: 5.5.1
 
@@ -36,21 +36,14 @@ CREATE TABLE IF NOT EXISTS `tb_article` (
   `content` text,
   `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发表时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章' AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章' AUTO_INCREMENT=13 ;
 
 --
 -- 转存表中的数据 `tb_article`
 --
 
 INSERT INTO `tb_article` (`id`, `category_id`, `title`, `author`, `content`, `datetime`) VALUES
-(1, 1, 'one of 近期通知', 'aaa', 'aaaaaa\r\naaaaaa\r\nbbbbbb\r\ncccccc', '2014-02-17 18:58:05'),
-(2, 1, 'two of 近期通知', 'bbb', 'bbbccc\r\ndddfff', '2014-02-17 18:58:05'),
-(3, 1, '3 近期通知', 'ssss', 'sadasdsadas\r\n\r\nsdasdasd\r\nsadasd\r\n\r\nsadasdas\r\n', '2014-02-19 19:26:32'),
-(4, 1, '4 近期通知仅仅急急急急急急急急急急急急近期', 'asdad', 'sdasdasdas\r\ndsfsdfsdfsdfsd\r\n\r\n\r\n\r\nfdsfsd\r\n\r\ndsfds\r\n\r\n', '2014-02-19 19:26:32'),
-(5, 1, '5 近期通知 都是广泛士大夫士大夫电风扇反对大师傅似的士大夫士大夫', '二恶烷', '大师傅士大夫士大夫\r\n\r\n\r\n是的方式方法\r\n\r\n\r\n对手犯规得分的', '2014-02-19 19:27:38'),
-(6, 1, '6 近期通知 撒大苏打似的', '是多少啊', '的萨芬士大夫士大夫\r\n\r\n但是发射点发射点发射点\r\n\r\n\r\n大师傅士大夫士大夫\r\n\r\n是的方式方法', '2014-02-19 19:27:38'),
-(7, 2, 'wsdasdadasd', 'sdasdas', 'saddsadas\r\nsa\r\nda\r\nsd\r\nas\r\nd\r\na\r\nd\r\nsd\r\nas\r\nd\r\nas\r\nds\r\na\r\nd\r\nasd\r\n\r\na', '2014-02-20 17:55:14'),
-(8, 2, 'fdsfsdfsdfdsf', 'dsfdssdfsdf', 'dsfsdfsdfsdfs\r\nsd\r\n\r\nfs\r\ndf\r\nsd\r\nf\r\ns\r\ndf\r\nsd\r\nf\r\nsd\r\n\r\nds', '2014-02-20 17:55:14');
+(12, 1, '撒旦撒旦', NULL, '<p>大苏打撒</p>\n\n<p>实打实打算</p>\n\n<p>撒大苏打</p>\n\n<p>撒大苏打似的</p>', '2014-03-01 19:54:28');
 
 -- --------------------------------------------------------
 
@@ -91,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `tb_category` (
   `article_num` int(10) NOT NULL DEFAULT '0' COMMENT '文章数',
   `display` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否在首页出现',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章类别' AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章类别' AUTO_INCREMENT=15 ;
 
 --
 -- 转存表中的数据 `tb_category`
@@ -101,6 +94,27 @@ INSERT INTO `tb_category` (`id`, `name`, `article_num`, `display`) VALUES
 (1, '近期通知', 0, 1),
 (2, '新闻动态', 0, 1),
 (3, '妙手偶得', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tb_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_user` (
+  `user_id` int(4) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `username` varchar(20) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `true_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `tb_user`
+--
+
+INSERT INTO `tb_user` (`user_id`, `username`, `password`, `true_name`) VALUES
+(1, 'xuyeye', '123456', '徐业业');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

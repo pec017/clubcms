@@ -17,6 +17,7 @@ class Admin extends CI_Controller {
 
 		//library
 		$this->load->library('typography');
+		$this->load->library('session');
 	}
 
 	private function get_page($page, $data){
@@ -29,18 +30,51 @@ class Admin extends CI_Controller {
 		echo "<script>"."alert(\"$str\");"."location.href=\"".site_url($path)."\";"."</script>";
 	}
 
+	private function check_log(){
+
+		if(!$this->session->userdata('user_id'))
+			redirect('admin/index');
+	}
+
 
 	//***************************************************
 
-	//todo 
-	//for logging in
+	//log in
 	function index(){
 
+		$this->load->view('admin/login');
+	}
 
+	function do_login(){
+		
+		$data['username'] = $this->input->post('username');
+		$data['password'] = $this->input->post('password');
+
+		$query = $this->m_adm->get_user($data);
+		if(!$query || 0==$query->num_rows){
+			$this->js_redirect('用户名密码错误！', 'admin/index');
+			return;
+		}
+
+		$result = $query->result()[0];
+
+		$session['user_id'] = $result->user_id;
+		$session['true_name'] = $result->true_name;
+		$this->session->set_userdata($session);
+
+		redirect('admin/info');
+	}
+
+	function do_logout(){
+
+		$this->session->unset_userdata('user_id');
+		redirect('admin/index');
 	}
 
 	//account information
 	function info(){
+
+		$this->check_log();
 
 		$data['category'] = $this->m_cms->get_category();
 
@@ -55,6 +89,8 @@ class Admin extends CI_Controller {
 	//manage category
 	function category(){
 
+		$this->check_log();
+
 		$data['category'] = $this->m_cms->get_category();
 
 		$data['title'] = '类别管理';
@@ -66,6 +102,8 @@ class Admin extends CI_Controller {
 
 	function do_category_add(){
 
+		$this->check_log();
+
 		$category_name = $this->input->post('category_name');
 
 		$query = $this->m_adm->add_category(array('category_name' => $category_name));
@@ -74,6 +112,8 @@ class Admin extends CI_Controller {
 	}
 
 	function do_category_del($category_id){
+
+		$this->check_log();
 
 		$category_id = (int)$category_id;
 
@@ -85,6 +125,8 @@ class Admin extends CI_Controller {
 	//article add
 	function article_add(){
 
+		$this->check_log();
+
 		$data['category'] = $this->m_cms->get_category();
 
 		$data['title'] = '新增文章';
@@ -95,6 +137,8 @@ class Admin extends CI_Controller {
 	}
 
 	function do_article_add(){
+
+		$this->check_log();
 
 		$data['title'] = $this->input->post('title');
 
@@ -111,6 +155,8 @@ class Admin extends CI_Controller {
 	//article del
 	function article_del(){
 
+		$this->check_log();
+
 		$data['article'] = $this->m_cms->get_article();
 
 		$data['title'] = '删除文章';
@@ -121,6 +167,8 @@ class Admin extends CI_Controller {
 	}
 
 	function do_article_del($article_id){
+
+		$this->check_log();
 
 		$data['article_id'] = (int)$article_id;
 

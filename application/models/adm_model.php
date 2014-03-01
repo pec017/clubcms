@@ -76,4 +76,24 @@ class Adm_model extends CI_Model {
 
 		return $query = $this->db->delete('tb_article', $where);
 	}
+
+
+	//user 
+	function get_user($condition = array()){
+
+		$where = array();
+
+		if(!isset($condition['username']) || empty($condition['username'])){
+			return false;
+		}
+
+		if(!isset($condition['password']) || empty($condition['password'])){
+			return false;
+		}
+
+		$where['username'] = $condition['username'];
+		$where['password'] = $condition['password'];
+
+		return $query = $this->db->get_where('tb_user', $where);
+	}
 }
