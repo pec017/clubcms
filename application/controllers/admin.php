@@ -4,7 +4,6 @@ class Admin extends CI_Controller {
 
 	function __construct(){
 
-
 		parent::__construct();
 
 		//model
@@ -14,6 +13,7 @@ class Admin extends CI_Controller {
 
 		//helper
 		$this->load->helper('url');
+		$this->load->helper('date');
 
 		//library
 		$this->load->library('typography');
@@ -38,6 +38,13 @@ class Admin extends CI_Controller {
 
 
 	//***************************************************
+
+	function test(){
+
+		$data = $this->m_cms->get_carousel()->result();
+
+		print_r($data);
+	}
 
 	//log in
 	function index(){
@@ -85,6 +92,62 @@ class Admin extends CI_Controller {
 
 		$this->load->view('admin/info', $data);
 	}
+
+	//carousel
+	function carousel(){
+
+		$this->check_log();
+
+		$data['carousel'] = $this->m_cms->get_carousel();
+
+		$data['title'] = '轮播管理';
+
+		$data['content'] = $this->get_page('admin/carousel', $data);
+
+		$this->load->view('admin/info', $data);
+	}
+
+	function do_carousel_add(){
+
+		$this->check_log();
+
+		$config['upload_path'] = './img/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = '2000';
+		$config['encrypt_name'] = true;
+
+		$this->load->library('upload', $config);
+
+		if(!$this->upload->do_upload('c_img')){
+			$this->js_redirect($this->upload->display_errors());
+			return;
+		}
+
+		$img_data = $this->upload->data();
+
+		$data['img_src'] = $img_data['file_name'];
+		$data['content_h'] = $this->input->post('c_head');
+		$data['content_p'] = $this->input->post('c_para');
+		$data['content_btn'] = $this->input->post('c_btn');
+
+		$query = $this->m_adm->add_carousel($data);
+
+		$this->js_redirect($query?'成功':'失败');
+	}
+
+	function do_carousel_del($carousel_id){
+
+		$this->check_log();
+
+		$carousel_id = (int)$carousel_id;
+
+		$data['carousel_id'] = $carousel_id;
+
+		$query = $this->m_adm->del_carousel($data);
+
+		$this->js_redirect($query?'成功':'失败');
+	}
+
 
 	//manage category
 	function category(){

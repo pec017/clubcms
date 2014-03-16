@@ -23,6 +23,7 @@
 			<div class="col-md-3">
 				<ul class="nav nav-pills nav-stacked">
 					<li class="active"><a href="info">个人设置</a></li>
+					<li><a href="carousel">轮播管理</a></li>
 					<li><a href="category">类别管理</a></li>
 					<li><a href="article_add">新增文章</a></li>
 					<li><a href="#">修改文章</a></li>

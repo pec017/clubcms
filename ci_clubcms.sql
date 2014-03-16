@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2014-03-01 22:41:00
+-- 生成日期: 2014-03-16 22:33:40
 -- 服务器版本: 5.6.11
 -- PHP 版本: 5.5.1
 
@@ -38,13 +38,6 @@ CREATE TABLE IF NOT EXISTS `tb_article` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章' AUTO_INCREMENT=13 ;
 
---
--- 转存表中的数据 `tb_article`
---
-
-INSERT INTO `tb_article` (`id`, `category_id`, `title`, `author`, `content`, `datetime`) VALUES
-(12, 1, '撒旦撒旦', NULL, '<p>大苏打撒</p>\n\n<p>实打实打算</p>\n\n<p>撒大苏打</p>\n\n<p>撒大苏打似的</p>', '2014-03-01 19:54:28');
-
 -- --------------------------------------------------------
 
 --
@@ -58,19 +51,19 @@ CREATE TABLE IF NOT EXISTS `tb_carousel` (
   `content_h` varchar(100) DEFAULT NULL,
   `content_p` varchar(500) DEFAULT NULL,
   `content_btn` varchar(100) DEFAULT NULL,
-  `btn_href` varchar(200) DEFAULT '#' COMMENT '按钮超链接地址',
+  `btn_href` varchar(200) DEFAULT NULL COMMENT '按钮超链接地址',
   `display` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否出现在首页',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='轮播' AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='轮播' AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `tb_carousel`
 --
 
 INSERT INTO `tb_carousel` (`id`, `img_src`, `img_alt`, `content_h`, `content_p`, `content_btn`, `btn_href`, `display`) VALUES
-(1, 'slide1.jpg', NULL, 'Example headline.', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Sign up today', '#', 1),
-(2, 'slide2.jpg', NULL, 'Another example headline.', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Learn more', '#', 1),
-(3, 'slide3.jpg', NULL, 'head of content', 'head of contenthead of contenthead of contenthead of contenthead of contenthead of contenthead of content', 'sign it up', '#', 1);
+(1, 'slide1.jpg', NULL, 'Example headline.', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Sign up today', NULL, 1),
+(2, 'slide2.jpg', NULL, 'Another example headline.', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Learn more', NULL, 1),
+(3, 'slide3.jpg', NULL, 'head of content', 'head of contenthead of contenthead of contenthead of contenthead of contenthead of contenthead of content', 'sign it up', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `tb_category` (
   `article_num` int(10) NOT NULL DEFAULT '0' COMMENT '文章数',
   `display` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否在首页出现',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章类别' AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文章类别' AUTO_INCREMENT=16 ;
 
 --
 -- 转存表中的数据 `tb_category`

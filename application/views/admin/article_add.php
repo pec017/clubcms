@@ -29,6 +29,5 @@
 				<button id="submit" type="submit" class="btn btn-default">提交</button>			
 			</div>
 		</div>
-		
 	</form>
 </div>
