@@ -1,4 +1,4 @@
 ClubCMS
 =======
 
-A small Club CMS using codeigniter
+A CMS using codeigniter for my club

@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['username'] = '';            # don't tell you!
 $db['default']['password'] = '';
 $db['default']['database'] = 'ci_clubcms';
 $db['default']['dbdriver'] = 'mysql';

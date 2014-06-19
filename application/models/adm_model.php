@@ -49,7 +49,6 @@ class Adm_model extends CI_Model {
 		}
 
 		if(!isset($condition['category_id']) || empty($condition['category_id'])){
-			echo 'category';
 			return false;
 		}
 
